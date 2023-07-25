@@ -1,0 +1,1 @@
+const GET_USER = `SELECT * FROM tbl_user WHERE username = ?`;
