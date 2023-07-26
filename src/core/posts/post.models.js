@@ -45,3 +45,40 @@ exports.postDetails = (id,cb) => {
         }
     })
 }
+
+//update post
+exports.updatePost = (data, id) => {
+    return new Promise((resolve, reject)=>{
+
+        var dataSet = [data,id];
+        //console.log(dataSet);
+        var query = `UPDATE tbl_posts SET ?, updatedAt = now() WHERE id = ?`;
+        MySQL.query_filter(query, dataSet, (err,results)=>{
+            if(err){
+                console.log(err);
+                reject(err)
+            }else{
+                resolve(results);
+            }
+        })
+    })
+}
+
+//delete post
+exports.deletePost = (id) => {
+    return new Promise((resolve,reject)=>{
+
+        var dataSet = [id];
+
+        var query =`DELETE FROM tbl_posts WHERE id=? `;
+
+        MySQL.query_filter(query, dataSet, (err,results) => {
+            if(err){
+                console.log(err);
+                reject(err);
+            }else{
+                resolve(results);
+            }
+        })
+    })
+}

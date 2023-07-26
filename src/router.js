@@ -14,4 +14,5 @@ module.exports = function(app) {
         next();
     });
     app.use("/api/auth", authRoutes);
+
 }

@@ -62,3 +62,40 @@ exports.postDetails = (req,res) =>{
         }
     })
 }
+
+exports.updatePost = (req, res) => {
+    var p_id = req.params.id;
+    var body = req.body;
+    console.log(body);
+    Queries.updatePost(body,p_id).then((results)=>{
+        console.log(results);
+        res.status(200).json({
+            "code": 200,
+            "message": "updated successful",
+            data : results
+        });
+    }).catch((err)=>{
+        res.status(404).json({
+            "code": 404,
+            "message": err
+        });
+    });
+}
+
+//post delete
+exports.deletePost = (req, res) => {
+    var p_id = req.params.id;
+
+    Queries.deletePost(p_id).then((results)=>{
+        res.status(200).json({
+            "code": 200,
+            "message": "Delete Successful",
+            data : results
+        });
+    }).catch((err)=>{
+        res.status(404).json({
+            "code": 404,
+            "message": err
+        })
+    })
+}
